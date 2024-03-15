@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.demo.demo1.demouser.model.DemoUser;
 import org.demo.demo1.demouser.repository.DemoUserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -15,9 +16,8 @@ public class DemoUserCrudService {
 
     private final DemoUserRepository demoUserRepository;
 
+    @Transactional(readOnly = false)
     public Integer saveUser(DemoUser demoUser){
         return demoUserRepository.save(demoUser).getId();
     }
-
-
 }
